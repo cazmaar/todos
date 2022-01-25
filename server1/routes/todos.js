@@ -1,5 +1,5 @@
 import express from "express";
-import { createTodo, getAllTodos } from "../models/todos.js";
+import { createTodo, getAllTodos, deleteTodo } from "../models/todos.js";
 
 const router = express.Router();
 
@@ -19,6 +19,15 @@ router.post("/", async function (req, res) {
     success: true,
     message: "It's done",
     payload: newPost
+  });
+});
+router.delete("/:id", async function (req, res) {
+  const { id } = req.params;
+  const deleted = await deleteTodo(id);
+  res.json({
+    success: true,
+    message: "It's done",
+    payload: deleted
   });
 });
 

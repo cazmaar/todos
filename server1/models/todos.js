@@ -17,3 +17,13 @@ export async function getAllTodos() {
 
   return res.rows;
 }
+
+// Delete a particular todo when its done
+export async function deleteTodo(id) {
+  console.log(id);
+  const res = await query(
+    "DELETE FROM todos WHERE id=$1 RETURNING *",
+    [id]
+  );
+  return res.rows;
+}
